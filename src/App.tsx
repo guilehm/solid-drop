@@ -1,10 +1,13 @@
 import './App.css'
+import Layout from './templates/Layout'
 
 
 const App = () => {
   return (
     <div className="App">
-      hello
+      <Layout>
+        <div>hello</div>
+      </Layout>
     </div>
   )
 }
