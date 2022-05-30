@@ -1,5 +1,6 @@
 import Layout from "./templates/Layout"
 import CssBaseline from "@mui/material/CssBaseline"
+import Steps from "./components/Steps"
 
 
 const App = () => {
@@ -7,7 +8,7 @@ const App = () => {
     <div className="App">
       <CssBaseline />
       <Layout>
-        <div>hello</div>
+        <Steps />
       </Layout>
     </div>
   )
