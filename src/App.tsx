@@ -1,4 +1,3 @@
-import "./App.css"
 import Layout from "./templates/Layout"
 import CssBaseline from "@mui/material/CssBaseline"
 
