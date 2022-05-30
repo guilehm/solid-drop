@@ -1,5 +1,7 @@
 const Login = () => {
-  return (<div>Hello from Login</div>)
+  return (
+    <div>Hello from Login</div>
+  )
 }
 
 
