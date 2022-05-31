@@ -1,3 +1,4 @@
+import Button from "../Button"
 import * as S from "./Register.styles"
 
 
@@ -9,6 +10,10 @@ const Register = () => {
       <S.Form>
         <S.Input placeholder="email" type="email" />
         <S.Input placeholder="password" type="password" />
+        <S.List>
+          <Button margin={"8px 8px 0 0"} color={"black"} bgColor={"#edf2f7"}>{"register"}</Button>
+          <Button margin={"8px 8px 0 0"} color={"black"} bgColor={"#edf2f7"}>{"login"}</Button>
+        </S.List>
       </S.Form>
     </>
   )

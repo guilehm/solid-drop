@@ -7,7 +7,6 @@ type ButtonType = {
 }
 
 export const Button = styled.a<ButtonType>`
-  display: inline-block;
   font-size: 1rem;
   font-weight: 500;
   padding: 0.35em 0.65em;
@@ -18,4 +17,10 @@ export const Button = styled.a<ButtonType>`
   white-space: nowrap;
   cursor: pointer;
   margin: ${(props) => props.margin || "0"};
+  &:hover {
+    opacity: 0.8;
+  }
+  &:active {
+    opacity: 0.6;
+  }
 `

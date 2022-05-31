@@ -37,3 +37,8 @@ export const Input = styled.input`
     box-shadow: 0 0 0 0.2px black;
   }
 `
+
+export const List = styled.div`
+  display: flex;
+  align-self: flex-start;
+`
