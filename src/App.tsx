@@ -1,4 +1,5 @@
 import Container from "./components/Container"
+import Register from "./components/Register"
 import GlobalStyle from "./global-styles"
 
 
@@ -6,7 +7,9 @@ const App = () => {
   return (
     <div className="App">
       <GlobalStyle />
-      <Container>hello world</Container>
+      <Container>
+        <Register />
+      </Container>
     </div>
   )
 }
