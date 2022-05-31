@@ -1,7 +1,12 @@
+import Container from "./components/Container"
+import GlobalStyle from "./global-styles"
+
+
 const App = () => {
   return (
     <div className="App">
-      hello world
+      <GlobalStyle />
+      <Container>hello world</Container>
     </div>
   )
 }
