@@ -6,7 +6,7 @@ type ButtonType = {
   margin?: string
 }
 
-export const Button = styled.a<ButtonType>`
+export const Button = styled.button<ButtonType>`
   font-size: 1rem;
   font-weight: 500;
   padding: 0.35em 0.65em;
@@ -14,6 +14,7 @@ export const Button = styled.a<ButtonType>`
   background-color: ${(props) => props.bgColor || "black"};
   text-align: center;
   border-radius: 0.25rem;
+  border: none;
   white-space: nowrap;
   cursor: pointer;
   margin: ${(props) => props.margin || "0"};
@@ -22,5 +23,8 @@ export const Button = styled.a<ButtonType>`
   }
   &:active {
     opacity: 0.6;
+  }
+  &:focus {
+    outline: ${(props) => props.color || "black"} solid 1.5px;
   }
 `
