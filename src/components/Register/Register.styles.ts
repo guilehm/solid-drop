@@ -42,3 +42,10 @@ export const List = styled.div`
   display: flex;
   align-self: flex-start;
 `
+
+export const Error = styled.div`
+  color: red;
+  font-size: 0.8rem;
+  margin-top: 8px;
+  align-self: start;
+`
