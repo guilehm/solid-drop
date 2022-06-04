@@ -1,3 +1,4 @@
+import axios, { AxiosError } from "axios"
 import { useState, useRef } from "react"
 import { useForm } from "react-hook-form"
 import ApiService from "../../services/api-service"
@@ -19,6 +20,18 @@ const Register = () => {
 
   const password = useRef({})
   password.current = watch("password", "")
+
+  const validateUsername = async (username: string) => {
+    try {
+      const response = await Api.validateUsername(username)
+      if (response.status === 200) return true
+    } catch (error) {
+      if (axios.isAxiosError(error)) {
+        if (error.response?.status === 400) return "username not available"
+      }
+    }
+    return "username could not be validated"
+  }
 
   const onSubmit = (values: FormData) => {
     setData(values)
@@ -48,13 +61,9 @@ const Register = () => {
             required: "please enter your username",
             minLength: { value: 3, message: "min length is 3" },
             maxLength: { value: 50, message: "max length is 50" },
+            validate: validateUsername,
           })} />
         {errors.username && <S.Error>{errors.username.message}</S.Error>}
-        {/* <S.Input
-          placeholder="email"
-          type="email"
-          {...register("email")} />
-        {errors.email && <S.Error>{errors.email.message}</S.Error>} */}
         <S.Input
           placeholder="password"
           type="password"
