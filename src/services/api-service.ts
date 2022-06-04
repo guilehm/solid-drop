@@ -5,8 +5,8 @@ const REACT_APP_API_URL = process.env.REACT_APP_API_URL || "http://localhost:808
 
 
 type UserCreateData = {
-  name?: string
-  email: string
+  username: string
+  email?: string
   password: string
 }
 
