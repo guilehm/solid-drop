@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useState, useRef } from "react"
 import { useForm } from "react-hook-form"
 import ApiService from "../../services/api-service"
 import Button from "../Button"
@@ -9,12 +9,16 @@ const Api = new ApiService()
 type FormData = {
   username: string
   password: string
+  password2: string
 }
 
 const Register = () => {
 
-  const { register, handleSubmit, formState: { errors } } = useForm<FormData>({ reValidateMode: "onBlur", })
+  const { register, handleSubmit, watch, formState: { errors } } = useForm<FormData>({ reValidateMode: "onBlur", })
   const [data, setData] = useState<FormData>()
+
+  const password = useRef({})
+  password.current = watch("password", "")
 
   const onSubmit = (values: FormData) => {
     setData(values)
@@ -60,6 +64,15 @@ const Register = () => {
             minLength: { value: 5, message: "min length is 5" },
           })} />
         {errors.password && <S.Error>{errors.password.message}</S.Error>}
+        <S.Input
+          placeholder="confirm password"
+          type="password"
+          autoComplete="current-password"
+          {...register("password2", {
+            required: "please confirm your password",
+            validate: (value) => value === password.current || "passwords don't match",
+          })} />
+        {errors.password2 && <S.Error>{errors.password2.message}</S.Error>}
         <S.List>
           <Button margin={"8px 8px 0 0"} color={"black"} bgColor={"#edf2f7"}>{"register"}</Button>
         </S.List>
