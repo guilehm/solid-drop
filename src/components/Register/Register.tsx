@@ -18,12 +18,18 @@ const Register = () => {
       <S.Subtitle>{"Welcome back!"}</S.Subtitle>
       <S.Form onSubmit={handleSubmit((data) => setData(JSON.stringify(data)))}>
         <S.Input
+          placeholder="username"
+          {...register("username", {
+            required: "please enter your username",
+            minLength: { value: 3, message: "min length is 3" },
+            maxLength: { value: 50, message: "max length is 50" },
+          })} />
+        {errors.username && <S.Error>{errors.username.message}</S.Error>}
+        {/* <S.Input
           placeholder="email"
           type="email"
-          {...register("email", {
-            required: "please enter your email.",
-          })} />
-        {errors.email && <S.Error>{errors.email.message}</S.Error>}
+          {...register("email")} />
+        {errors.email && <S.Error>{errors.email.message}</S.Error>} */}
         <S.Input
           placeholder="password"
           type="password"
