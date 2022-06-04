@@ -1,4 +1,3 @@
-import Container from "./components/Container"
 import Register from "./components/Register"
 import GlobalStyle from "./global-styles"
 import { BrowserRouter, Routes, Route } from "react-router-dom"
@@ -14,17 +13,9 @@ const App = () => {
       <BrowserRouter>
         <Routes>
 
-          <Route path="/register" element={
-            <Container>
-              <Register />
-            </Container>
-          } />
+          <Route path="/register" element={<Register />} />
 
-          <Route path="/login" element={
-            <Container>
-              <Login />
-            </Container>
-          } />
+          <Route path="/login" element={<Login />} />
 
         </Routes>
       </BrowserRouter>

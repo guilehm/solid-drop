@@ -7,6 +7,7 @@ import { ToastContainer, toast } from "react-toastify"
 import ApiService, { RegisterResponseData } from "../../services/api-service"
 import { ACCESS_TOKEN_LIFETIME, REFRESH_TOKEN_LIFETIME } from "../../settings"
 import Button from "../Button"
+import Container from "../Container"
 import * as S from "./Register.styles"
 
 
@@ -69,7 +70,7 @@ const Register = () => {
   }
 
   return (
-    <>
+    <Container>
       <S.Title>{"Let's register you"}</S.Title>
       <S.Subtitle>{"Welcome!"}</S.Subtitle>
       <ToastContainer
@@ -114,7 +115,7 @@ const Register = () => {
         </S.List>
 
       </S.Form>
-    </>
+    </Container>
   )
 }
 
