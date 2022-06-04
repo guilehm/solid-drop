@@ -1,16 +1,36 @@
 import { useState } from "react"
 import { useForm } from "react-hook-form"
+import ApiService from "../../services/api-service"
 import Button from "../Button"
 import * as S from "./Register.styles"
 
+const Api = new ApiService()
 
-
+type FormData = {
+  username: string
+  password: string
+}
 
 const Register = () => {
 
-  const { register, handleSubmit, formState: { errors }
-  } = useForm({ reValidateMode: "onBlur", })
-  const [data, setData] = useState("")
+  const { register, handleSubmit, formState: { errors } } = useForm<FormData>({ reValidateMode: "onBlur", })
+  const [data, setData] = useState<FormData>()
+
+  const onSubmit = (values: FormData) => {
+    setData(values)
+
+    const handleSuccess = () => {
+      console.log("success")
+    }
+
+    const handleError = () => {
+      console.log("error")
+    }
+
+    Api.createUser(values)
+      .then(handleSuccess)
+      .catch(handleError)
+  }
 
   return (
     <>
