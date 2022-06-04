@@ -1,4 +1,4 @@
-import axios, { AxiosInstance } from "axios"
+import axios, { AxiosError, AxiosInstance, AxiosResponse } from "axios"
 
 
 const REACT_APP_API_URL = process.env.REACT_APP_API_URL || "http://localhost:8080"
@@ -26,6 +26,10 @@ class ApiService {
 
   createUser(data: UserCreateData) {
     return this.client.post(`${this.url}/users/`, data)
+  }
+
+  validateUsername(username: string): Promise<AxiosResponse | AxiosError> {
+    return this.client.post(`${this.url}/users/validate/username/`, { username })
   }
 
 }
