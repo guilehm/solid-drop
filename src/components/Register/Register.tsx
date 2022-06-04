@@ -1,9 +1,12 @@
-import axios from "axios"
+import axios, { AxiosResponse } from "axios"
 import { useRef, useState } from "react"
+import { useCookies } from "react-cookie"
 import { useForm } from "react-hook-form"
-import ApiService from "../../services/api-service"
+import ApiService, { RegisterResponseData } from "../../services/api-service"
+import { ACCESS_TOKEN_LIFETIME, REFRESH_TOKEN_LIFETIME } from "../../settings"
 import Button from "../Button"
 import * as S from "./Register.styles"
+
 
 const Api = new ApiService()
 
@@ -15,11 +18,14 @@ type FormData = {
 
 const Register = () => {
 
+
+  const [, setCookie,] = useCookies(["token", "refresh"])
+
   const {
     register, handleSubmit, watch, formState: { errors },
   } = useForm<FormData>({ reValidateMode: "onBlur", })
 
-  const [data, setData] = useState<FormData>()
+  const [, setData] = useState<FormData>()
 
   const password = useRef({})
   password.current = watch("password", "")
@@ -39,12 +45,23 @@ const Register = () => {
   const onSubmit = (values: FormData) => {
     setData(values)
 
-    const handleSuccess = () => {
-      console.log("success")
+    const handleSuccess = (res: AxiosResponse<RegisterResponseData>) => {
+      setCookie("token", res.data.token, {
+        path: "/",
+        maxAge: ACCESS_TOKEN_LIFETIME,
+        sameSite: true,
+      })
+      setCookie("refresh", res.data.refresh_token, {
+        path: "/",
+        maxAge: REFRESH_TOKEN_LIFETIME,
+        sameSite: true,
+      })
+      // TODO: redirect user
     }
 
     const handleError = () => {
       console.log("error")
+      // TODO: handle error
     }
 
     Api.createUser(values)
