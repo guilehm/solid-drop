@@ -19,6 +19,7 @@ const Register = () => {
       <S.Form onSubmit={handleSubmit(onSubmit)}>
         <S.Input
           placeholder="username"
+          autoComplete="username"
           {...register("username", {
             required: "please enter your username",
             minLength: { value: 3, message: "min length is 3" },
@@ -33,6 +34,7 @@ const Register = () => {
         <S.Input
           placeholder="password"
           type="password"
+          autoComplete="current-password"
           {...register("password", {
             required: "please enter your password",
             minLength: { value: 5, message: "min length is 5" },
