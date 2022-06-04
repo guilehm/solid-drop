@@ -2,6 +2,7 @@ import Container from "./components/Container"
 import Register from "./components/Register"
 import GlobalStyle from "./global-styles"
 
+import "react-toastify/dist/ReactToastify.css"
 
 const App = () => {
   return (

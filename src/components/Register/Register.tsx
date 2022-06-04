@@ -2,6 +2,8 @@ import axios, { AxiosResponse } from "axios"
 import { useRef, useState } from "react"
 import { useCookies } from "react-cookie"
 import { useForm } from "react-hook-form"
+import { ToastContainer, toast } from "react-toastify"
+
 import ApiService, { RegisterResponseData } from "../../services/api-service"
 import { ACCESS_TOKEN_LIFETIME, REFRESH_TOKEN_LIFETIME } from "../../settings"
 import Button from "../Button"
@@ -45,6 +47,7 @@ const Register = () => {
   const onSubmit = (values: FormData) => {
     setData(values)
 
+    const handleError = () => toast.error("could not create your account !")
     const handleSuccess = (res: AxiosResponse<RegisterResponseData>) => {
       setCookie("token", res.data.token, {
         path: "/",
@@ -56,12 +59,8 @@ const Register = () => {
         maxAge: REFRESH_TOKEN_LIFETIME,
         sameSite: true,
       })
+      toast.success("we've created your account for you !")
       // TODO: redirect user
-    }
-
-    const handleError = () => {
-      console.log("error")
-      // TODO: handle error
     }
 
     Api.createUser(values)
@@ -73,6 +72,10 @@ const Register = () => {
     <>
       <S.Title>{"Let's register you"}</S.Title>
       <S.Subtitle>{"Welcome!"}</S.Subtitle>
+      <ToastContainer
+        autoClose={2000}
+        position="bottom-center"
+      />
       <S.Form onSubmit={handleSubmit(onSubmit)}>
 
         <S.Input
