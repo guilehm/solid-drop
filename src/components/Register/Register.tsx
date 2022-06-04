@@ -14,9 +14,9 @@ const Register = () => {
 
   return (
     <>
-      <S.Title>{"Let's sign you in"}</S.Title>
-      <S.Subtitle>{"Welcome back!"}</S.Subtitle>
-      <S.Form onSubmit={handleSubmit((data) => setData(JSON.stringify(data)))}>
+      <S.Title>{"Let's register you"}</S.Title>
+      <S.Subtitle>{"Welcome!"}</S.Subtitle>
+      <S.Form onSubmit={handleSubmit(onSubmit)}>
         <S.Input
           placeholder="username"
           {...register("username", {
