@@ -40,7 +40,6 @@ const Register = () => {
         {errors.password && <S.Error>{errors.password.message}</S.Error>}
         <S.List>
           <Button margin={"8px 8px 0 0"} color={"black"} bgColor={"#edf2f7"}>{"register"}</Button>
-          <Button margin={"8px 8px 0 0"} color={"black"} bgColor={"#edf2f7"}>{"login"}</Button>
         </S.List>
       </S.Form>
     </>
