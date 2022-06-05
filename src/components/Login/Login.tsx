@@ -1,12 +1,12 @@
-import { useForm } from "react-hook-form"
-import { Axios, AxiosError, AxiosResponse } from "axios"
+import { AxiosError, AxiosResponse } from "axios"
 import { useCookies } from "react-cookie"
-import { ToastContainer, toast } from "react-toastify"
+import { useForm } from "react-hook-form"
+import { toast, ToastContainer } from "react-toastify"
 import ApiService, { LoginResponseData } from "../../services/api-service"
+import { ACCESS_TOKEN_LIFETIME, REFRESH_TOKEN_LIFETIME } from "../../settings"
 import Button from "../Button"
 import Container from "../Container"
 import * as S from "../Register/Register.styles"
-import { ACCESS_TOKEN_LIFETIME, REFRESH_TOKEN_LIFETIME } from "../../settings"
 
 const Api = new ApiService()
 
