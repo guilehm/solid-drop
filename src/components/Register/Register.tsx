@@ -2,9 +2,11 @@ import axios, { AxiosResponse } from "axios"
 import { useRef, useState } from "react"
 import { useCookies } from "react-cookie"
 import { useForm } from "react-hook-form"
+import { useNavigate } from "react-router-dom"
 import { toast, ToastContainer } from "react-toastify"
 import ApiService, { RegisterResponseData } from "../../services/api-service"
 import { ACCESS_TOKEN_LIFETIME, REFRESH_TOKEN_LIFETIME } from "../../settings"
+import Arrow from "../Arrow"
 import Button from "../Button"
 import Container from "../Container"
 import * as S from "./Register.styles"
@@ -28,6 +30,8 @@ const Register = () => {
   } = useForm<FormData>({ reValidateMode: "onBlur", })
 
   const [, setData] = useState<FormData>()
+
+  const navigate = useNavigate()
 
   const password = useRef({})
   password.current = watch("password", "")
@@ -70,6 +74,7 @@ const Register = () => {
 
   return (
     <Container>
+      <Arrow onClick={() => navigate(-1)}></Arrow>
       <S.Title>{"Let's register you"}</S.Title>
       <S.Subtitle>{"Welcome!"}</S.Subtitle>
       <ToastContainer

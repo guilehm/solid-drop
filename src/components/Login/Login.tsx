@@ -4,6 +4,8 @@ import { useForm } from "react-hook-form"
 import { toast, ToastContainer } from "react-toastify"
 import ApiService, { LoginResponseData } from "../../services/api-service"
 import { ACCESS_TOKEN_LIFETIME, REFRESH_TOKEN_LIFETIME } from "../../settings"
+import { useNavigate } from "react-router-dom"
+import Arrow from "../Arrow"
 import Button from "../Button"
 import Container from "../Container"
 import * as S from "../Register/Register.styles"
@@ -19,6 +21,8 @@ const Login = () => {
 
   const { register, handleSubmit, formState: { errors } } = useForm<FormData>({ reValidateMode: "onBlur", })
   const [, setCookie,] = useCookies(["token", "refresh"])
+
+  const navigate = useNavigate()
 
   const onSubmit = (values: FormData) => {
     const handleError = (error: AxiosError) => {
@@ -45,11 +49,11 @@ const Login = () => {
     Api.login(values.username, values.password)
       .then(handleSuccess)
       .catch(handleError)
-
   }
 
   return (
     <Container>
+      <Arrow onClick={() => navigate(-1)}></Arrow>
       <S.Title>{"Let's sign you in"}</S.Title>
       <S.Subtitle>{"Welcome back!"}</S.Subtitle>
       <ToastContainer
