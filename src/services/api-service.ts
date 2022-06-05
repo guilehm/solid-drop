@@ -18,6 +18,12 @@ export type RegisterResponseData = {
   date_joined: string
 }
 
+export type LoginResponseData = {
+  id: number
+  token: string
+  refresh_token: string
+}
+
 class ApiService {
   url: string
   client: AxiosInstance
@@ -30,6 +36,10 @@ class ApiService {
   getClient() {
     const client = axios.create()
     return client
+  }
+
+  login(username: string, password: string): Promise<AxiosResponse<LoginResponseData>> {
+    return this.client.post(`${this.url}/users/login/`, { username, password })
   }
 
   createUser(data: UserCreateData): Promise<AxiosResponse<RegisterResponseData>> {
