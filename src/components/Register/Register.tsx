@@ -47,7 +47,7 @@ const Register = () => {
   const onSubmit = (values: FormData) => {
     setData(values)
 
-    const handleError = () => toast.error("could not create your account !")
+    const handleError = () => toast.error("could not create your account!")
     const handleSuccess = (res: AxiosResponse<RegisterResponseData>) => {
       setCookie("token", res.data.token, {
         path: "/",
@@ -59,7 +59,7 @@ const Register = () => {
         maxAge: REFRESH_TOKEN_LIFETIME,
         sameSite: true,
       })
-      toast.success("we've created your account for you !")
+      toast.success("we've created your account for you!")
       // TODO: redirect user
     }
 
