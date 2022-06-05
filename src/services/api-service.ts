@@ -1,4 +1,4 @@
-import axios, { AxiosError, AxiosInstance, AxiosResponse } from "axios"
+import axios, { AxiosInstance, AxiosResponse } from "axios"
 
 
 const REACT_APP_API_URL = process.env.REACT_APP_API_URL || "http://localhost:8080"
