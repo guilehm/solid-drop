@@ -15,3 +15,10 @@ export const List = styled.ul`
     margin-right: 5px;
   }
 `
+
+export const Subtitle = styled.h2`
+  font-size: 1.2rem;
+  font-weight: 300;
+  padding-bottom: 10px;
+  margin: 0;
+`
