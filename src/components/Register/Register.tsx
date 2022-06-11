@@ -4,8 +4,9 @@ import { useCookies } from "react-cookie"
 import { useForm } from "react-hook-form"
 import { useNavigate } from "react-router-dom"
 import { toast, ToastContainer } from "react-toastify"
-import ApiService, { RegisterResponseData } from "../../services/api-service"
-import { ACCESS_TOKEN_LIFETIME, REFRESH_TOKEN_LIFETIME } from "../../settings"
+import ApiService from "../../services/api-service"
+import { ACCESS_TOKEN_LIFETIME } from "../../settings"
+import { RegisterResponseData, FormData } from "../../types/api-types"
 import Arrow from "../Arrow"
 import Button from "../Button"
 import Container from "../Container"
@@ -14,17 +15,10 @@ import * as S from "./Register.styles"
 
 const Api = new ApiService()
 
-type FormData = {
-  username: string
-  password: string
-  password2: string
-}
 
 const Register = () => {
 
-
   const [, setCookie,] = useCookies(["token", "refresh"])
-
   const {
     register, handleSubmit, watch, formState: { errors },
   } = useForm<FormData>({ reValidateMode: "onBlur", })
