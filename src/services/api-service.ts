@@ -89,6 +89,14 @@ class ApiService {
     return this.client.post(`${this.url}/users/validate/username/`, { username })
   }
 
+  getPlayerList(): Promise<AxiosResponse<Array<Player>>> {
+    return this.client.get(`${this.url}/players/`)
+  }
+
+  refreshTokens(refreshToken: string): Promise<AxiosResponse<RefreshResponseData>> {
+    return this.client.post(`${this.url}/users/refresh/`, { "refresh_token": refreshToken })
+  }
+
 }
 
 
