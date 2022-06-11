@@ -1,28 +1,12 @@
 import axios, { AxiosInstance, AxiosResponse } from "axios"
+import { Cookies } from "react-cookie"
+import { ACCESS_TOKEN_LIFETIME } from "../settings"
+import { LoginResponseData, RefreshResponseData, RegisterResponseData, UserCreateData } from "../types/api-types"
+import { Player } from "../types/game-types"
 
 
 const REACT_APP_API_URL = process.env.REACT_APP_API_URL || "http://localhost:8080"
 
-
-type UserCreateData = {
-  username: string
-  email?: string
-  password: string
-}
-
-export type RegisterResponseData = {
-  id: number
-  token: string
-  refresh_token: string
-  email?: string
-  date_joined: string
-}
-
-export type LoginResponseData = {
-  id: number
-  token: string
-  refresh_token: string
-}
 
 class ApiService {
   url: string

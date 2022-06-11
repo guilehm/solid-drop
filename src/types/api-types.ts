@@ -23,3 +23,8 @@ export type RefreshResponseData = {
   token: string
 }
 
+export type FormData = {
+  username: string
+  password: string
+  password2: string
+}
