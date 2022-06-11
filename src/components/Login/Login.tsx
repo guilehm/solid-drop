@@ -43,7 +43,7 @@ const Login = () => {
         sameSite: true,
       })
       toast.success("logged in!")
-      // TODO: redirect user
+      setTimeout(() => navigate("/"), 2500)
     }
 
     Api.login(values.username, values.password)

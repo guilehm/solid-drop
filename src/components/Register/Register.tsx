@@ -64,7 +64,7 @@ const Register = () => {
         sameSite: true,
       })
       toast.success("we've created your account for you!")
-      // TODO: redirect user
+      setTimeout(() => navigate("/"), 2500)
     }
 
     Api.createUser(values)
