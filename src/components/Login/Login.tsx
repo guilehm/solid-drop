@@ -3,6 +3,7 @@ import { useCookies } from "react-cookie"
 import { useForm } from "react-hook-form"
 import { useNavigate } from "react-router-dom"
 import { toast, ToastContainer } from "react-toastify"
+import { setCookies } from "../../helpers/functions"
 import ApiService from "../../services/api-service"
 import { ACCESS_TOKEN_LIFETIME, REFRESH_TOKEN_LIFETIME } from "../../settings"
 import { LoginResponseData } from "../../types/api-types"
@@ -33,16 +34,7 @@ const Login = () => {
     }
 
     const handleSuccess = (res: AxiosResponse<LoginResponseData>) => {
-      setCookie("token", res.data.token, {
-        path: "/",
-        maxAge: ACCESS_TOKEN_LIFETIME,
-        sameSite: true,
-      })
-      setCookie("refresh", res.data.refresh_token, {
-        path: "/",
-        maxAge: REFRESH_TOKEN_LIFETIME,
-        sameSite: true,
-      })
+      setCookies(setCookie, res.data.token, res.data.refresh_token)
       toast.success("logged in!")
       setTimeout(() => navigate("/"), 2500)
     }

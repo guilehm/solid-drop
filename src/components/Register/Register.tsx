@@ -4,6 +4,7 @@ import { useCookies } from "react-cookie"
 import { useForm } from "react-hook-form"
 import { useNavigate } from "react-router-dom"
 import { toast, ToastContainer } from "react-toastify"
+import { setCookies } from "../../helpers/functions"
 import ApiService from "../../services/api-service"
 import { ACCESS_TOKEN_LIFETIME } from "../../settings"
 import { RegisterResponseData, FormData } from "../../types/api-types"
@@ -47,11 +48,7 @@ const Register = () => {
 
     const handleError = () => toast.error("could not create your account!")
     const handleSuccess = (res: AxiosResponse<RegisterResponseData>) => {
-      setCookie("token", res.data.token, {
-        path: "/",
-        maxAge: ACCESS_TOKEN_LIFETIME,
-        sameSite: true,
-      })
+      setCookies(setCookie, res.data.token, res.data.refresh_token)
       toast.success("we've created your account for you!")
       setTimeout(() => navigate("/"), 2500)
     }
