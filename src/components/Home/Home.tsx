@@ -2,12 +2,9 @@ import Button from "../Button"
 import Container from "../Container"
 import * as S from "./Home.styles"
 
-import { Link } from "react-router-dom"
-import { useState } from "react"
 import { useCookies } from "react-cookie"
-import { JWT_SECRET_KEY } from "../../settings"
-
 import { useJwt } from "react-jwt"
+import { Link } from "react-router-dom"
 
 
 type UserData = {
