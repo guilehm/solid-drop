@@ -34,7 +34,46 @@ class ApiService {
   }
 
   getClient() {
+    const cookies = new Cookies(["token", "refresh"])
     const client = axios.create()
+
+    client.interceptors.request.use(
+      (config) => {
+        const token = cookies.get("token")
+        if (token && config.headers) {
+          config.headers["Authorization"] = token
+        }
+        return config
+      },
+      (error) => {
+        Promise.reject(error)
+      }
+    )
+
+    client.interceptors.response.use(
+      (response) => response,
+      async (error) => {
+        const cookies = new Cookies(["token", "refresh"])
+        const refreshToken = cookies.get("refresh")
+        const originalRequest = error.config
+        if (
+          refreshToken &&
+          !originalRequest._retry &&
+          error.response.status === 401 || error.response.status === 403
+        ) {
+          originalRequest._retry = true
+          const response = await this.refreshTokens(refreshToken)
+          axios.defaults.headers.common["Authorization"] = response.data.token
+          cookies.set("token", response.data.token, {
+            path: "/",
+            maxAge: ACCESS_TOKEN_LIFETIME,
+            sameSite: true,
+          })
+          return client(originalRequest)
+        }
+        return Promise.reject(error)
+      }
+    )
     return client
   }
 
