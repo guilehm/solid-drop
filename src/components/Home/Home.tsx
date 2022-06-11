@@ -1,10 +1,11 @@
-import Button from "../Button"
-import Container from "../Container"
-import * as S from "./Home.styles"
-
+import { useEffect } from "react"
 import { useCookies } from "react-cookie"
 import { useJwt } from "react-jwt"
 import { Link } from "react-router-dom"
+import ApiService from "../../services/api-service"
+import Button from "../Button"
+import Container from "../Container"
+import * as S from "./Home.styles"
 
 
 type UserData = {
@@ -13,12 +14,21 @@ type UserData = {
   exp: number
 }
 
+const Api = new ApiService()
+
 const Home = () => {
 
   const [cookies, , removeCookie] = useCookies(["token", "refresh"])
-
-  const { token } = cookies
+  const { token, refresh } = cookies
   const { decodedToken, isExpired } = useJwt<UserData>(token)
+
+  useEffect(() => {
+    if (!refresh) return
+
+    Api.getPlayerList()
+      .then(res => console.log(res))
+      .catch(err => console.log("ops", err))
+  }, [refresh])
 
   return (
     <Container>
@@ -30,7 +40,7 @@ const Home = () => {
 
         {!isExpired &&
           <Button
-            bgColor="red"
+            bgColor="orange"
             onClick={() => { removeCookie("token"), removeCookie("refresh") }}>
             logout
           </Button>}
