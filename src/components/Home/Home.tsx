@@ -6,6 +6,11 @@ import { Link } from "react-router-dom"
 
 
 const Home = () => {
+
+  const [cookies, , removeCookie] = useCookies(["token", "refresh"])
+
+  const { token } = cookies
+  const { decodedToken, isExpired } = useJwt<UserData>(token)
   return (
     <Container>
       <S.Title>rogue like</S.Title>
