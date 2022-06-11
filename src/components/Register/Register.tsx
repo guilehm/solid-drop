@@ -58,11 +58,6 @@ const Register = () => {
         maxAge: ACCESS_TOKEN_LIFETIME,
         sameSite: true,
       })
-      setCookie("refresh", res.data.refresh_token, {
-        path: "/",
-        maxAge: REFRESH_TOKEN_LIFETIME,
-        sameSite: true,
-      })
       toast.success("we've created your account for you!")
       setTimeout(() => navigate("/"), 2500)
     }
