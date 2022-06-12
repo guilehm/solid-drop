@@ -1,5 +1,5 @@
-import { ACCESS_TOKEN_LIFETIME, REFRESH_TOKEN_LIFETIME } from "../settings"
 import { CookieSetOptions } from "universal-cookie"
+import { ACCESS_TOKEN_LIFETIME, REFRESH_TOKEN_LIFETIME } from "../settings"
 
 
 export const setCookies = (
