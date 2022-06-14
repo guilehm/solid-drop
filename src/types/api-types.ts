@@ -28,12 +28,3 @@ export type FormData = {
   password: string
   password2: string
 }
-
-export type Sprite = {
-  name: string
-  tileSet: string
-  spriteX: number
-  spriteY: number
-  spriteWidth: number
-  spriteHeight: number
-}
