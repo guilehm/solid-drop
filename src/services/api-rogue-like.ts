@@ -1,6 +1,6 @@
 import axios, { AxiosInstance, AxiosResponse } from "axios"
 import { REACT_APP_API_ROGUE_URL } from "../settings"
-import { Sprite } from "../types/api-types"
+import { Sprite } from "../types/game-types"
 
 
 class ApiRogueLike {
